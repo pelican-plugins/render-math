@@ -56,10 +56,10 @@ Usage
 -----
 ### Templates
 No alteration is needed to a template for this plugin to work. Just install
-the plugin and start writing your Math. 
+the plugin and start writing your Math.
 
 ### Settings
-Certain MathJax rendering options can be set. These options 
+Certain MathJax rendering options can be set. These options
 are in a dictionary variable called `MATH_JAX` in the pelican
 settings file.
 
@@ -80,7 +80,7 @@ level. **Default Value**: `'0em'`.
 for the font is `sanserif`, `typewriter` or `fraktur`. If this is not set, it will
 use the default font settings. **Default Value**: `default`
  * `latex_preview`: [string] controls the preview message users are shown while mathjax is
-rendering LaTex. If set to `'Tex'`, then the TeX code is used as the preview 
+rendering LaTex. If set to `'Tex'`, then the TeX code is used as the preview
 (which will be visible until it is processed by MathJax). **Default Value**: `'Tex'`
  * `color`: [string] controls the color of the mathjax rendered font. **Default Value**: `'inherit'`
  * `linebreak_automatic`: [boolean] If set, Mathjax will try to *intelligently* break up displayed math
@@ -105,18 +105,18 @@ Make math render in blue and displaymath align to the left:
 
 Use the [color](http://docs.mathjax.org/en/latest/tex.html#color) and
 [mhchem](http://docs.mathjax.org/en/latest/tex.html#mhchem) extensions:
-    
+
     MATH_JAX = {'tex_extensions': ['color.js','mhchem.js']}
 
 #### Resulting HTML
 Inlined math is wrapped in `span` tags, while displayed math is wrapped in `div` tags.
-These tags will have a class attribute that is set to `math` which 
+These tags will have a class attribute that is set to `math` which
 can be used by template designers to alter the display of the math.
 
 Markdown
 --------
 This plugin implements a custom extension for markdown resulting in math
-being a "first class citizen" for Pelican. 
+being a "first class citizen" for Pelican.
 
 ### Inlined Math
 Math between `$`..`$`, for example, `$`x^2`$`, will be rendered inline
@@ -133,13 +133,13 @@ new paragraph.
 #### Other Latex  Display Math commands
 The other LaTeX commands which usually invoke display math mode from text mode
 are supported,
-and are automatically treated like `$$`-style displayed math 
+and are automatically treated like `$$`-style displayed math
 in that they are rendered "block" style on their own lines.
 For example, `\begin{equation}` x^2 `\end{equation}`,
 will be rendered in its own block with a right justified equation number
 at the top of the block. This equation number can be referenced in the document.
 To do this, use a `label` inside of the equation format and then refer to that label
-using `ref`. For example: `\begin{equation}` `\label{eq}` X^2 `\end{equation}`. 
+using `ref`. For example: `\begin{equation}` `\label{eq}` X^2 `\end{equation}`.
 Now refer to that equation number by `$`\ref{eq}`$`.
 
 reStructuredText
