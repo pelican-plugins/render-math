@@ -13,9 +13,10 @@ setup(
     url='http://github.com/pelican-plugins/render_math',
     license='AGPL-3.0',
     description='Math Render Plugin For Pelican',
-    long_description=open('Readme.md').read(),
+    long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    install_requires=['pelican>=3.6',
+    install_requires=[
+                      'pelican>=3.6',
                       'typogrify>=2.0.7',
                       ],
     classifiers=[
