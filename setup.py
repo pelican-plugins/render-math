@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-exec(open('version.py').read())
+exec(open('render_math/version.py').read())
 
 setup(
     name='render_math',
