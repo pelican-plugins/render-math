@@ -1,0 +1,4 @@
+include README.md
+include LICENSE
+include render_math/mathjax_script_template
+include render_math/test_data/*
