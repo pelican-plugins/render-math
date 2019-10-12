@@ -19,7 +19,7 @@ into the HTML.
 Typogrify Compatibility
 -----------------------
 This plugin now plays nicely with Typogrify, but it
-requires Typogrify version 2.07 or above.
+requires Typogrify version 2.0.7 or above.
 
 User Settings
 -------------
