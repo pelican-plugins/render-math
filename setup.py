@@ -19,6 +19,7 @@ setup(
                       'pelican>=3.6',
                       'typogrify>=2.0.7',
                       ],
+    include_package_data=True,  # includes files from MANIFEST.in if in render_math/
     classifiers=[
                  'Development Status :: 5 - Production/Stable',
                  'Framework :: Pelican :: Plugins',
