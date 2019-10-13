@@ -26,4 +26,4 @@ before_script:
   - conda list
 script:
   - set -e
-  - py.test --cov=render_math
+  - py.test --cov=render_math --ignore=pelican
