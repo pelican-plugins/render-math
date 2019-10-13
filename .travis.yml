@@ -1,0 +1,30 @@
+language: generic
+os:
+  - linux
+before_install:
+  - |
+    MINICONDA_URL="https://repo.continuum.io/miniconda"
+    MINICONDA_FILE="Miniconda3-latest-Linux-x86_64.sh"
+    curl -L -O "${MINICONDA_URL}/${MINICONDA_FILE}"
+    bash $MINICONDA_FILE -b
+  - source ~/miniconda3/bin/activate root
+  - conda config --set always_yes yes
+  - conda update -q conda
+  - conda create -c conda-forge -n pelican-env python feedgenerator>=1.9 jinja2>=2.7 pygments docutils pytz blinker unidecode six>=1.4 python-dateutil pytest coverage
+  - conda activate pelican-env
+  # Pelican has to be installed from the Github source because the test package
+  # is not included in the PyPi release.
+  - git clone https://github.com/getpelican/pelican.git
+  - cd pelican
+  - git checkout 4.1.3
+  - python setup.py install
+  - cd -
+install:
+  - python setup.py install
+before_script:
+  - conda info
+  - conda list
+script:
+  - set -e
+  # run tests on resonance lib
+  - py.test --cov=render_math
