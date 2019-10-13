@@ -10,7 +10,7 @@ before_install:
   - source ~/miniconda3/bin/activate root
   - conda config --set always_yes yes
   - conda update -q conda
-  - conda create -c conda-forge -n pelican-env python feedgenerator>=1.9 jinja2>=2.7 pygments docutils pytz blinker unidecode six>=1.4 python-dateutil pytest coverage typogrify
+  - conda create -c conda-forge -n pelican-env python feedgenerator>=1.9 jinja2>=2.7 pygments docutils pytz blinker unidecode six>=1.4 python-dateutil pytest pytest-cov coverage typogrify
   - conda activate pelican-env
   # Pelican has to be installed from the Github source because the test package
   # is not included in the PyPi release.
@@ -26,4 +26,4 @@ before_script:
   - conda list
 script:
   - set -e
-  - py.test # --cov="render_math"
+  - py.test --cov=render_math
