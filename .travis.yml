@@ -26,5 +26,4 @@ before_script:
   - conda list
 script:
   - set -e
-  # run tests on resonance lib
-  - py.test --cov="render_math"
+  - py.test # --cov="render_math"
