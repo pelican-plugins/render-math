@@ -33,16 +33,16 @@ the math.  See README for more details.
 import os
 import sys
 
-from pelican import signals, generators
+from pelican import generators, signals
 
 try:
     from bs4 import BeautifulSoup
-except ImportError as e:
+except ImportError:
     BeautifulSoup = None
 
 try:
-    from . pelican_mathjax_markdown_extension import PelicanMathJaxExtension
-except ImportError as e:
+    from .pelican_mathjax_markdown_extension import PelicanMathJaxExtension
+except ImportError:
     PelicanMathJaxExtension = None
 
 try:
@@ -51,7 +51,7 @@ except NameError:
     string_type = str
 
 
-def process_settings(pelicanobj):
+def process_settings(pelicanobj):  # NOQA: C901
     """Sets user specified MathJax settings (see README for more details)"""
 
     mathjax_settings = {}
@@ -62,30 +62,59 @@ def process_settings(pelicanobj):
     # will be used for
 
     # Default settings
-    mathjax_settings['auto_insert'] = True  # if set to true, it will insert mathjax script automatically into content without needing to alter the template.
-    mathjax_settings['align'] = 'center'  # controls alignment of of displayed equations (values can be: left, right, center)
-    mathjax_settings['indent'] = '0em'  # if above is not set to 'center', then this setting acts as an indent
-    mathjax_settings['show_menu'] = 'true'  # controls whether to attach mathjax contextual menu
-    mathjax_settings['process_escapes'] = 'true'  # controls whether escapes are processed
-    mathjax_settings['latex_preview'] = 'TeX'  # controls what user sees while waiting for LaTex to render
-    mathjax_settings['color'] = 'inherit'  # controls color math is rendered in
-    mathjax_settings['linebreak_automatic'] = 'false'  # Set to false by default for performance reasons (see http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking)
-    mathjax_settings['tex_extensions'] = ''  # latex extensions that can be embedded inside mathjax (see http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
-    mathjax_settings['responsive'] = 'false'  # Tries to make displayed math responsive
-    mathjax_settings['responsive_break'] = '768'  # The break point at which it math is responsively aligned (in pixels)
-    mathjax_settings['mathjax_font'] = 'default'  # forces mathjax to use the specified font.
-    mathjax_settings['process_summary'] = BeautifulSoup is not None  # will fix up summaries if math is cut off. Requires beautiful soup
-    mathjax_settings['message_style'] = 'normal'  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
-    mathjax_settings['font_list'] = ['STIX', 'TeX'] # Include in order of preference among TeX, STIX-Web, Asana-Math, Neo-Euler, Gyre-Pagella, Gyre-Termes and Latin-Modern
-    mathjax_settings['equation_numbering'] = 'none' # AMS, auto, none
+    mathjax_settings[
+        "auto_insert"
+    ] = True  # if set to true, it will insert mathjax script automatically into content without needing to alter the template.
+    mathjax_settings[
+        "align"
+    ] = "center"  # controls alignment of of displayed equations (values can be: left, right, center)
+    mathjax_settings[
+        "indent"
+    ] = "0em"  # if above is not set to 'center', then this setting acts as an indent
+    mathjax_settings[
+        "show_menu"
+    ] = "true"  # controls whether to attach mathjax contextual menu
+    mathjax_settings[
+        "process_escapes"
+    ] = "true"  # controls whether escapes are processed
+    mathjax_settings[
+        "latex_preview"
+    ] = "TeX"  # controls what user sees while waiting for LaTex to render
+    mathjax_settings["color"] = "inherit"  # controls color math is rendered in
+    mathjax_settings[
+        "linebreak_automatic"
+    ] = "false"  # Set to false by default for performance reasons (see http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking)
+    mathjax_settings[
+        "tex_extensions"
+    ] = ""  # latex extensions that can be embedded inside mathjax (see http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
+    mathjax_settings["responsive"] = "false"  # Tries to make displayed math responsive
+    mathjax_settings[
+        "responsive_break"
+    ] = "768"  # The break point at which it math is responsively aligned (in pixels)
+    mathjax_settings[
+        "mathjax_font"
+    ] = "default"  # forces mathjax to use the specified font.
+    mathjax_settings["process_summary"] = (
+        BeautifulSoup is not None
+    )  # will fix up summaries if math is cut off. Requires beautiful soup
+    mathjax_settings[
+        "message_style"
+    ] = "normal"  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
+    mathjax_settings["font_list"] = [
+        "STIX",
+        "TeX",
+    ]  # Include in order of preference among TeX, STIX-Web, Asana-Math, Neo-Euler, Gyre-Pagella, Gyre-Termes and Latin-Modern
+    mathjax_settings["equation_numbering"] = "none"  # AMS, auto, none
 
     # Source for MathJax
-    mathjax_settings['source'] = "'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML'"
+    mathjax_settings[
+        "source"
+    ] = "'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML'"
 
     # Get the user specified settings
-    try:
-        settings = pelicanobj.settings['MATH_JAX']
-    except:
+    if "MATH_JAX" in pelicanobj.settings:
+        settings = pelicanobj.settings["MATH_JAX"]
+    else:
         settings = None
 
     # If no settings have been specified, then return the defaults
@@ -97,36 +126,36 @@ def process_settings(pelicanobj):
         # Iterate over dictionary in a way that is compatible with both version 2
         # and 3 of python
 
-        if key == 'align':
+        if key == "align":
             typeVal = isinstance(value, string_type)
 
             if not typeVal:
                 continue
 
-            if value == 'left' or value == 'right' or value == 'center':
+            if value == "left" or value == "right" or value == "center":
                 mathjax_settings[key] = value
             else:
-                mathjax_settings[key] = 'center'
+                mathjax_settings[key] = "center"
 
-        if key == 'indent':
+        if key == "indent":
             mathjax_settings[key] = value
 
-        if key == 'source':
+        if key == "source":
             mathjax_settings[key] = value
 
-        if key == 'show_menu' and isinstance(value, bool):
-            mathjax_settings[key] = 'true' if value else 'false'
+        if key == "show_menu" and isinstance(value, bool):
+            mathjax_settings[key] = "true" if value else "false"
 
-        if key == 'message_style':
-            mathjax_settings[key] = value if value is not None else 'none'
+        if key == "message_style":
+            mathjax_settings[key] = value if value is not None else "none"
 
-        if key == 'auto_insert' and isinstance(value, bool):
+        if key == "auto_insert" and isinstance(value, bool):
             mathjax_settings[key] = value
 
-        if key == 'process_escapes' and isinstance(value, bool):
-            mathjax_settings[key] = 'true' if value else 'false'
+        if key == "process_escapes" and isinstance(value, bool):
+            mathjax_settings[key] = "true" if value else "false"
 
-        if key == 'latex_preview':
+        if key == "latex_preview":
             typeVal = isinstance(value, string_type)
 
             if not typeVal:
@@ -134,7 +163,7 @@ def process_settings(pelicanobj):
 
             mathjax_settings[key] = value
 
-        if key == 'color':
+        if key == "color":
             typeVal = isinstance(value, string_type)
 
             if not typeVal:
@@ -142,29 +171,31 @@ def process_settings(pelicanobj):
 
             mathjax_settings[key] = value
 
-        if key == 'linebreak_automatic' and isinstance(value, bool):
-            mathjax_settings[key] = 'true' if value else 'false'
+        if key == "linebreak_automatic" and isinstance(value, bool):
+            mathjax_settings[key] = "true" if value else "false"
 
-        if key == 'process_summary' and isinstance(value, bool):
+        if key == "process_summary" and isinstance(value, bool):
             if value and BeautifulSoup is None:
-                print("BeautifulSoup4 is needed for summaries to be processed by render_math\nPlease install it")
+                print(
+                    "BeautifulSoup4 is needed for summaries to be processed by render_math\nPlease install it"
+                )
                 value = False
 
             mathjax_settings[key] = value
 
-        if key == 'responsive' and isinstance(value, bool):
-            mathjax_settings[key] = 'true' if value else 'false'
+        if key == "responsive" and isinstance(value, bool):
+            mathjax_settings[key] = "true" if value else "false"
 
-        if key == 'responsive_break' and isinstance(value, int):
+        if key == "responsive_break" and isinstance(value, int):
             mathjax_settings[key] = str(value)
 
-        if key == 'tex_extensions' and isinstance(value, list):
+        if key == "tex_extensions" and isinstance(value, list):
             # filter string values, then add '' to them
             value = filter(lambda string: isinstance(string, string_type), value)
             value = map(lambda string: "'%s'" % string, value)
-            mathjax_settings[key] = ',' + ','.join(value)
+            mathjax_settings[key] = "," + ",".join(value)
 
-        if key == 'mathjax_font':
+        if key == "mathjax_font":
             typeVal = isinstance(value, string_type)
 
             if not typeVal:
@@ -172,66 +203,72 @@ def process_settings(pelicanobj):
 
             value = value.lower()
 
-            if value == 'sanserif':
-                value = 'SansSerif'
-            elif value == 'fraktur':
-                value = 'Fraktur'
-            elif value == 'typewriter':
-                value = 'Typewriter'
+            if value == "sanserif":
+                value = "SansSerif"
+            elif value == "fraktur":
+                value = "Fraktur"
+            elif value == "typewriter":
+                value = "Typewriter"
             else:
-                value = 'default'
+                value = "default"
 
             mathjax_settings[key] = value
 
-        if key == 'font_list' and isinstance(value, list):
+        if key == "font_list" and isinstance(value, list):
             # make an array string from the list
             value = filter(lambda string: isinstance(string, string_type), value)
             value = map(lambda string: ",'%s'" % string, value)
-            mathjax_settings[key] = ''.join(value)[1:]
+            mathjax_settings[key] = "".join(value)[1:]
 
-        if key == 'equation_numbering':
-            mathjax_settings[key] = value if value is not None else 'none'
+        if key == "equation_numbering":
+            mathjax_settings[key] = value if value is not None else "none"
 
     return mathjax_settings
+
 
 def process_summary(article):
     """Ensures summaries are not cut off. Also inserts
     mathjax script so that math will be rendered"""
 
     summary = article.summary
-    summary_parsed = BeautifulSoup(summary, 'html.parser')
-    math = summary_parsed.find_all(class_='math')
+    summary_parsed = BeautifulSoup(summary, "html.parser")
+    math = summary_parsed.find_all(class_="math")
 
     if len(math) > 0:
         last_math_text = math[-1].get_text()
-        if len(last_math_text) > 3 and last_math_text[-3:] == '...':
-            content_parsed = BeautifulSoup(article._content, 'html.parser')
-            full_text = content_parsed.find_all(class_='math')[len(math)-1].get_text()
+        if len(last_math_text) > 3 and last_math_text[-3:] == "...":
+            content_parsed = BeautifulSoup(article._content, "html.parser")
+            full_text = content_parsed.find_all(class_="math")[len(math) - 1].get_text()
             math[-1].string = "%s ..." % full_text
             summary = summary_parsed.decode()
 
         # clear memoization cache
         import functools
+
         if isinstance(article.get_summary, functools.partial):
             memoize_instance = article.get_summary.func.__self__
             memoize_instance.cache.clear()
 
-        article._summary = "%s<script type='text/javascript'>%s</script>" % (summary, process_summary.mathjax_script)
+        article._summary = "%s<script type='text/javascript'>%s</script>" % (
+            summary,
+            process_summary.mathjax_script,
+        )
+
 
 def configure_typogrify(pelicanobj, mathjax_settings):
     """Instructs Typogrify to ignore math tags - which allows Typogrify
     to play nicely with math related content"""
 
     # If Typogrify is not being used, then just exit
-    if not pelicanobj.settings.get('TYPOGRIFY', False):
+    if not pelicanobj.settings.get("TYPOGRIFY", False):
         return
 
     try:
         import typogrify
         from distutils.version import LooseVersion
 
-        if LooseVersion(typogrify.__version__) < LooseVersion('2.0.7'):
-            raise TypeError('Incorrect version of Typogrify')
+        if LooseVersion(typogrify.__version__) < LooseVersion("2.0.7"):
+            raise TypeError("Incorrect version of Typogrify")
 
         from typogrify.filters import typogrify
 
@@ -239,26 +276,35 @@ def configure_typogrify(pelicanobj, mathjax_settings):
         # it is installed and it is a recent enough version
         # that can be used to ignore all math
         # Instantiate markdown extension and append it to the current extensions
-        pelicanobj.settings['TYPOGRIFY_IGNORE_TAGS'].extend(['.math', 'script'])  # ignore math class and script
+        pelicanobj.settings["TYPOGRIFY_IGNORE_TAGS"].extend(
+            [".math", "script"]
+        )  # ignore math class and script
 
     except (ImportError, TypeError) as e:
-        pelicanobj.settings['TYPOGRIFY'] = False  # disable Typogrify
+        pelicanobj.settings["TYPOGRIFY"] = False  # disable Typogrify
 
         if isinstance(e, ImportError):
-            print("\nTypogrify is not installed, so it is being ignored.\nIf you want to use it, please install via: pip install typogrify\n")
+            print(
+                "\nTypogrify is not installed, so it is being ignored.\nIf you want to use it, please install via: pip install typogrify\n"
+            )
 
         if isinstance(e, TypeError):
-            print("\nA more recent version of Typogrify is needed for the render_math module.\nPlease upgrade Typogrify to the latest version (anything equal or above version 2.0.7 is okay).\nTypogrify will be turned off due to this reason.\n")
+            print(
+                "\nA more recent version of Typogrify is needed for the render_math module.\nPlease upgrade Typogrify to the latest version (anything equal or above version 2.0.7 is okay).\nTypogrify will be turned off due to this reason.\n"
+            )
+
 
 def process_mathjax_script(mathjax_settings):
     """Load the mathjax script template from file, and render with the settings"""
 
     # Read the mathjax javascript template from file
-    with open (os.path.dirname(os.path.realpath(__file__))
-            + '/mathjax_script_template', 'r') as mathjax_script_template:
+    with open(
+        os.path.dirname(os.path.realpath(__file__)) + "/mathjax_script_template", "r"
+    ) as mathjax_script_template:
         mathjax_template = mathjax_script_template.read()
 
     return mathjax_template.format(**mathjax_settings)
+
 
 def mathjax_for_markdown(pelicanobj, mathjax_script, mathjax_settings):
     """Instantiates a customized markdown extension for handling mathjax
@@ -266,27 +312,37 @@ def mathjax_for_markdown(pelicanobj, mathjax_script, mathjax_settings):
 
     # Create the configuration for the markdown template
     config = {}
-    config['mathjax_script'] = mathjax_script
-    config['math_tag_class'] = 'math'
-    config['auto_insert'] = mathjax_settings['auto_insert']
+    config["mathjax_script"] = mathjax_script
+    config["math_tag_class"] = "math"
+    config["auto_insert"] = mathjax_settings["auto_insert"]
 
     # Instantiate markdown extension and append it to the current extensions
     try:
-        if isinstance(pelicanobj.settings.get('MD_EXTENSIONS'), list): # pelican 3.6.3 and earlier
-            pelicanobj.settings['MD_EXTENSIONS'].append(PelicanMathJaxExtension(config))
+        if isinstance(
+            pelicanobj.settings.get("MD_EXTENSIONS"), list
+        ):  # pelican 3.6.3 and earlier
+            pelicanobj.settings["MD_EXTENSIONS"].append(PelicanMathJaxExtension(config))
         else:
-            pelicanobj.settings['MARKDOWN'].setdefault('extensions', []).append(PelicanMathJaxExtension(config))
-    except:
+            pelicanobj.settings["MARKDOWN"].setdefault("extensions", []).append(
+                PelicanMathJaxExtension(config)
+            )
+    except:  # NOQA E722
         sys.excepthook(*sys.exc_info())
-        sys.stderr.write("\nError - the pelican mathjax markdown extension failed to configure. MathJax is non-functional.\n")
+        sys.stderr.write(
+            "\nError - the pelican mathjax markdown extension failed to configure. MathJax is non-functional.\n"
+        )
         sys.stderr.flush()
+
 
 def mathjax_for_rst(pelicanobj, mathjax_script, mathjax_settings):
     """Setup math for RST"""
-    docutils_settings = pelicanobj.settings.get('DOCUTILS_SETTINGS', {})
-    docutils_settings.setdefault('math_output', 'MathJax %s' % mathjax_settings['source'])
-    pelicanobj.settings['DOCUTILS_SETTINGS'] = docutils_settings
+    docutils_settings = pelicanobj.settings.get("DOCUTILS_SETTINGS", {})
+    docutils_settings.setdefault(
+        "math_output", "MathJax %s" % mathjax_settings["source"]
+    )
+    pelicanobj.settings["DOCUTILS_SETTINGS"] = docutils_settings
     rst_add_mathjax.mathjax_script = mathjax_script
+
 
 def pelican_init(pelicanobj):
     """
@@ -313,21 +369,26 @@ def pelican_init(pelicanobj):
 
     # Set process_summary's mathjax_script variable
     process_summary.mathjax_script = None
-    if mathjax_settings['process_summary']:
+    if mathjax_settings["process_summary"]:
         process_summary.mathjax_script = mathjax_script
+
 
 def rst_add_mathjax(content):
     """Adds mathjax script for reStructuredText"""
 
     # .rst is the only valid extension for reStructuredText files
     _, ext = os.path.splitext(os.path.basename(content.source_path))
-    if ext != '.rst':
+    if ext != ".rst":
         return
 
     # If math class is present in text, add the javascript
     # note that RST hardwires mathjax to be class "math"
     if 'class="math"' in content._content:
-        content._content += "<script type='text/javascript'>%s</script>" % rst_add_mathjax.mathjax_script
+        content._content += (
+            "<script type='text/javascript'>%s</script>"
+            % rst_add_mathjax.mathjax_script
+        )
+
 
 def process_rst_and_summaries(content_generators):
     """
@@ -348,11 +409,10 @@ def process_rst_and_summaries(content_generators):
     for generator in content_generators:
         if isinstance(generator, generators.ArticlesGenerator):
             for article in (
-                    generator.articles +
-                    generator.translations +
-                    generator.drafts):
+                generator.articles + generator.translations + generator.drafts
+            ):
                 rst_add_mathjax(article)
-                #optionally fix truncated formulae in summaries.
+                # optionally fix truncated formulae in summaries.
                 if process_summary.mathjax_script is not None:
                     process_summary(article)
         elif isinstance(generator, generators.PagesGenerator):
@@ -360,6 +420,7 @@ def process_rst_and_summaries(content_generators):
                 rst_add_mathjax(page)
             for page in generator.hidden_pages:
                 rst_add_mathjax(page)
+
 
 def register():
     """Plugin registration"""
