@@ -1,4 +1,4 @@
 include README.md
 include LICENSE
-include render_math/mathjax_script_template
-include render_math/test_data/*
+include pelican/plugins/render_math/mathjax_script_template
+include pelican/plugins/render_math/test_data/*
