@@ -1,6 +1,8 @@
 Render Math Plugin for Pelican
 ==============================
 
+[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/render-math/build)](https://github.com/pelican-plugins/render-math/actions)
+
 This plugin gives [Pelican][] the ability to render mathematics inside post
 content. It accomplishes this by using the [MathJax][] JavaScript engine.
 
