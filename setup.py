@@ -15,8 +15,8 @@ setup(
     description="Render Math Plugin for Pelican",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    install_requires=["pelican>=3.6", "typogrify>=2.0.7"],
-    include_package_data=True,  # includes files from MANIFEST.in if in render_math/
+    install_requires=["pelican>=4.3", "typogrify>=2.0.7"],
+        include_package_data=True,  # includes files from MANIFEST.in if in render_math/
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Framework :: Pelican :: Plugins",
