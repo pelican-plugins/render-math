@@ -14,7 +14,7 @@ Both Markdown and reStructuredText are supported.
 Requirements
 ------------
 
-* [Pelican][] version *3.6* or above is required.
+* [Pelican][] version *4.5* or above is required.
 * [Typogrify][] version *2.0.7* or higher is needed for Typogrify to behave
   properly with this plugin. If this version is not available, Typogrify will be
   disabled for the entire site.
@@ -27,7 +27,7 @@ Installation
 
 This plugin can be installed via:
 
-    pip install pelican-render-math
+    python -m pip install pelican-render-math
 
 Your site should now be capable of rendering math using the MathJax JavaScript
 engine. No alterations to the template are needed — just use and enjoy!
@@ -190,8 +190,17 @@ Displayed math uses the [math block](https://docutils.sourceforge.io/docs/ref/rs
    α_t(i) = P(O_1, O_2, … O_t, q_t = S_i λ)
 ```
 
+Contributing
+------------
+
+Contributions are welcome and much appreciated. Every little bit helps. You can contribute by improving the documentation, adding missing features, and fixing bugs. You can also help out by reviewing and commenting on [existing issues][].
+
+To start contributing to this plugin, review the [Contributing to Pelican][] documentation, beginning with the **Contributing Code** section.
+
 
 [BeautifulSoup]: https://www.crummy.com/software/BeautifulSoup/
 [MathJax]: https://www.mathjax.org/
 [Pelican]: https://github.com/getpelican/pelican
 [Typogrify]: https://github.com/mintchaos/typogrify
+[existing issues]: https://github.com/pelican-plugins/render-math/issues
+[Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
