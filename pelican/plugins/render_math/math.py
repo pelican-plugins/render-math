@@ -249,7 +249,7 @@ def process_summary(article):
             memoize_instance = article.get_summary.func.__self__
             memoize_instance.cache.clear()
 
-        article._summary = "%s<script type='text/javascript'>%s</script>" % (
+        article.metadata["summary"] = "%s<script type='text/javascript'>%s</script>" % (
             summary,
             process_summary.mathjax_script,
         )
