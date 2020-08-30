@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.0.3 - 2020-08-30
+------------------
+
+Fix troublesome ElementTree import introduced in v1.0.2
+
 1.0.2 - 2020-08-23
 ------------------
 
