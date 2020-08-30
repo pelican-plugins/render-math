@@ -8,7 +8,7 @@ gives Pelican the ability to use Mathjax as a "first class
 citizen" of the blog
 """
 
-import xml.etree.ElementTree
+from xml.etree.ElementTree import Element
 
 import markdown
 from markdown.util import AtomicString
@@ -24,7 +24,7 @@ class PelicanMathJaxPattern(markdown.inlinepatterns.Pattern):
         self.tag = tag
 
     def handleMatch(self, m):
-        node = xml.etree.ElementTree(self.tag)
+        node = Element(self.tag)
         node.set("class", self.math_tag_class)
 
         prefix = "\\(" if m.group("prefix") == "$" else m.group("prefix")
@@ -51,7 +51,7 @@ class PelicanMathJaxCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
         current_idx = 0
 
         for idx in div_math:
-            el = xml.etree.ElementTree("p")
+            el = Element("p")
             el.text = text
             el.extend(children[current_idx:idx])
 
@@ -66,7 +66,7 @@ class PelicanMathJaxCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
             insert_idx += 1
             current_idx = idx + 1
 
-        el = xml.etree.ElementTree("p")
+        el = Element("p")
         el.text = text
         el.extend(children[current_idx:])
 
@@ -112,7 +112,7 @@ class PelicanMathJaxAddJavaScript(markdown.treeprocessors.Treeprocessor):
             return root
 
         # Add the mathjax script to the html document
-        mathjax_script = xml.etree.ElementTree("script")
+        mathjax_script = Element("script")
         mathjax_script.set("type", "text/javascript")
         mathjax_script.text = AtomicString(
             self.pelican_mathjax_extension.getConfig("mathjax_script")
