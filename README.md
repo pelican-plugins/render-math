@@ -29,6 +29,12 @@ This plugin can be installed via:
 
     python -m pip install pelican-render-math
 
+Add `render_math` to your `PLUGINS` setting in `pelicanconf.py` for Pelican
+to use the plugin while building the site.
+
+Example-
+> `PLUGINS = ['sitemap', 'simple_footnotes', 'render_math']`
+
 Your site should now be capable of rendering math using the MathJax JavaScript
 engine. No alterations to the template are needed — just use and enjoy!
 
