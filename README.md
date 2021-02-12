@@ -29,7 +29,9 @@ This plugin can be installed via:
 
     python -m pip install pelican-render-math
 
-Your site should now be capable of rendering math using the MathJax JavaScript
+For more detailed plugin usage instructions, please refer to the [Pelican Plugin Documentation](https://docs.getpelican.com/en/latest/plugins.html).
+
+Once the plugin has been installed according to those instructions, your site should now be capable of rendering math using the MathJax JavaScript
 engine. No alterations to the template are needed — just use and enjoy!
 
 However, if you wish, you can set the `auto_insert` setting to `False` which
