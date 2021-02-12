@@ -1,7 +1,8 @@
 Render Math Plugin for Pelican
 ==============================
 
-[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/render-math/build)](https://github.com/pelican-plugins/render-math/actions) [![PyPI Version](https://img.shields.io/pypi/v/pelican-render-math)](https://pypi.org/project/pelican-render-math/)
+[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/render-math/build)](https://github.com/pelican-plugins/render-math/actions)
+[![PyPI Version](https://img.shields.io/pypi/v/pelican-render-math)](https://pypi.org/project/pelican-render-math/)
 
 This plugin gives [Pelican][] the ability to render mathematics inside post
 content. It accomplishes this by using the [MathJax][] JavaScript engine.
@@ -29,8 +30,12 @@ This plugin can be installed via:
 
     python -m pip install pelican-render-math
 
-Your site should now be capable of rendering math using the MathJax JavaScript
-engine. No alterations to the template are needed — just use and enjoy!
+For more detailed plugin installation instructions, please refer to the
+[Pelican Plugin Documentation](https://docs.getpelican.com/en/latest/plugins.html).
+
+Once the plugin has been installed according to those instructions, your site
+should be capable of rendering math using the MathJax JavaScript engine.
+No alterations to the template are needed — just use and enjoy!
 
 However, if you wish, you can set the `auto_insert` setting to `False` which
 will disable the MathJax script from being automatically inserted into the
