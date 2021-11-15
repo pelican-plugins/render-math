@@ -170,8 +170,9 @@ class PelicanMathJaxExtension(markdown.Extension):
         )
 
         # Process mathjax before escapes are processed since escape processing will
-        # intefer with mathjax. The order in which the displayed and inlined math
-        # is registered below matters: we should have higher priority than 'escape' which has 180
+        # interfere with mathjax. The order in which the displayed and inlined math
+        # is registered below matters: we should have higher priority than 'escape',
+        # which has 180.
         md.inlinePatterns.register(
             PelicanMathJaxPattern(self, "div", mathjax_display_regex),
             "mathjax_displayed",
@@ -183,7 +184,8 @@ class PelicanMathJaxExtension(markdown.Extension):
             185,
         )
 
-        # Correct the invalid HTML that results from teh displayed math (<div> tag within a <p> tag)
+        # Correct the invalid HTML that results from the displayed math
+        # (<div> tag within a <p> tag)
         md.treeprocessors.register(
             PelicanMathJaxCorrectDisplayMath(self), "mathjax_correctdisplayedmath", 15
         )
