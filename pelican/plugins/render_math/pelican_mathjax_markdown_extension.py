@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Pelican Mathjax Markdown Extension
 ==================================
@@ -18,7 +17,7 @@ class PelicanMathJaxPattern(markdown.inlinepatterns.Pattern):
     """Inline markdown processing that matches mathjax"""
 
     def __init__(self, pelican_mathjax_extension, tag, pattern):
-        super(PelicanMathJaxPattern, self).__init__(pattern)
+        super().__init__(pattern)
         self.math_tag_class = pelican_mathjax_extension.getConfig("math_tag_class")
         self.pelican_mathjax_extension = pelican_mathjax_extension
         self.tag = tag
@@ -141,7 +140,7 @@ class PelicanMathJaxExtension(markdown.Extension):
                 True,
                 "Determines if mathjax script is automatically inserted into content",
             ]
-            super(PelicanMathJaxExtension, self).__init__(**config)
+            super().__init__(**config)
         except AttributeError:
             # Markdown versions < 2.5
             config["mathjax_script"] = [
@@ -156,7 +155,7 @@ class PelicanMathJaxExtension(markdown.Extension):
                 config["auto_insert"],
                 "Determines if mathjax script is automatically inserted into content",
             ]
-            super(PelicanMathJaxExtension, self).__init__(config)
+            super().__init__(config)
 
         # Used as a flag to determine if javascript
         # needs to be injected into a document

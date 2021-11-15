@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Math Render Plugin for Pelican
 ==============================
@@ -249,7 +248,9 @@ def process_summary(article):
             memoize_instance = article.get_summary.func.__self__
             memoize_instance.cache.clear()
 
-        article.metadata["summary"] = "%s<script type='text/javascript'>%s</script>" % (
+        article.metadata[
+            "summary"
+        ] = "{}<script type='text/javascript'>{}</script>".format(
             summary,
             process_summary.mathjax_script,
         )
@@ -300,7 +301,7 @@ def process_mathjax_script(mathjax_settings):
 
     # Read the mathjax javascript template from file
     with open(
-        os.path.dirname(os.path.realpath(__file__)) + "/mathjax_script_template", "r"
+        os.path.dirname(os.path.realpath(__file__)) + "/mathjax_script_template"
     ) as mathjax_script_template:
         mathjax_template = mathjax_script_template.read()
 
