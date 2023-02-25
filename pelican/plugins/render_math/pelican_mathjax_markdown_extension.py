@@ -128,7 +128,6 @@ class PelicanMathJaxExtension(markdown.Extension):
     """A markdown extension enabling mathjax processing in Markdown for Pelican"""
 
     def __init__(self, config):
-
         try:
             # Needed for markdown versions >= 2.5
             self.config["mathjax_script"] = ["", "Mathjax JavaScript script"]
