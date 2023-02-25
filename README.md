@@ -203,7 +203,7 @@ In order for `\frac`, equation numbering, and other features to work, the MathJA
 ```html
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 ```
-As long as this script is loaded in either the head or body of the HTML output, the complex expressions are also converted. 
+As long as this script is loaded in either the head or body of the HTML output, the complex expressions are also converted.
 
 Contributing
 ------------
