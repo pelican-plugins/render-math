@@ -195,15 +195,15 @@ Displayed math uses the [math block](https://docutils.sourceforge.io/docs/ref/rs
    α_t(i) = P(O_1, O_2, … O_t, q_t = S_i λ)
 ```
 
-Support for features such as frac, equation numbering etc.,
----------------------
-In order to get `\frac` and other features to work, the MathJAX JS file need to be added to the HTML file either via the template configuration, if that is supported or by editing the template file. The current MathJAX CDN is hosted at `http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML` and the code to add it to the html is given below.
+Enabling Additional Features
+----------------------------
+
+In order for `\frac`, equation numbering, and other features to work, the MathJAX JavaScript file must be added to the HTML file, either via your theme's template configuration (if supported) or by editing the relevant template file directly. The current MathJAX CDN is hosted at `http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML`, and the code to add it to the HTML is provided below.
 
 ```html
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
 ```
-As long as the JS is loaded either in head or body of the HTML output, the complex expressions are also converted. 
+As long as this script is loaded in either the head or body of the HTML output, the complex expressions are also converted. 
 
 Contributing
 ------------
