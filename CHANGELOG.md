@@ -20,4 +20,3 @@ Specify Pelican 4.5 as minimum required version
 ------------------
 
 First release in new namespace plugin format
-
