@@ -1,7 +1,7 @@
 Render Math Plugin for Pelican
 ==============================
 
-[![Build Status](https://img.shields.io/github/workflow/status/pelican-plugins/render-math/build)](https://github.com/pelican-plugins/render-math/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/render-math/main.yml?branch=main)](https://github.com/pelican-plugins/render-math/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-render-math)](https://pypi.org/project/pelican-render-math/)
 
 This plugin gives [Pelican][] the ability to render mathematics inside post
