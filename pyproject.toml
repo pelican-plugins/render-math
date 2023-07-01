@@ -51,7 +51,7 @@ markdown = ["markdown"]
 [tool.autopub]
 project-name = "Render Math"
 git-username = "botpub"
-git-email = "botpub@autopub.rocks"
+git-email = "52496925+botpub@users.noreply.github.com"
 append-github-contributor = true
 version-strings = ["pelican/plugins/render_math/version.py"]
 
