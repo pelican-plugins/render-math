@@ -61,44 +61,44 @@ def process_settings(pelicanobj):  # NOQA: C901
     # will be used for
 
     # Default settings
-    mathjax_settings[
-        "auto_insert"
-    ] = True  # if set to true, it will insert mathjax script automatically into content without needing to alter the template.
-    mathjax_settings[
-        "align"
-    ] = "center"  # controls alignment of of displayed equations (values can be: left, right, center)
-    mathjax_settings[
-        "indent"
-    ] = "0em"  # if above is not set to 'center', then this setting acts as an indent
-    mathjax_settings[
-        "show_menu"
-    ] = "true"  # controls whether to attach mathjax contextual menu
-    mathjax_settings[
-        "process_escapes"
-    ] = "true"  # controls whether escapes are processed
-    mathjax_settings[
-        "latex_preview"
-    ] = "TeX"  # controls what user sees while waiting for LaTex to render
+    mathjax_settings["auto_insert"] = (
+        True  # if set to true, it will insert mathjax script automatically into content without needing to alter the template.
+    )
+    mathjax_settings["align"] = (
+        "center"  # controls alignment of of displayed equations (values can be: left, right, center)
+    )
+    mathjax_settings["indent"] = (
+        "0em"  # if above is not set to 'center', then this setting acts as an indent
+    )
+    mathjax_settings["show_menu"] = (
+        "true"  # controls whether to attach mathjax contextual menu
+    )
+    mathjax_settings["process_escapes"] = (
+        "true"  # controls whether escapes are processed
+    )
+    mathjax_settings["latex_preview"] = (
+        "TeX"  # controls what user sees while waiting for LaTex to render
+    )
     mathjax_settings["color"] = "inherit"  # controls color math is rendered in
-    mathjax_settings[
-        "linebreak_automatic"
-    ] = "false"  # Set to false by default for performance reasons (see http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking)
-    mathjax_settings[
-        "tex_extensions"
-    ] = ""  # latex extensions that can be embedded inside mathjax (see http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
+    mathjax_settings["linebreak_automatic"] = (
+        "false"  # Set to false by default for performance reasons (see http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking)
+    )
+    mathjax_settings["tex_extensions"] = (
+        ""  # latex extensions that can be embedded inside mathjax (see http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
+    )
     mathjax_settings["responsive"] = "false"  # Tries to make displayed math responsive
-    mathjax_settings[
-        "responsive_break"
-    ] = "768"  # The break point at which it math is responsively aligned (in pixels)
-    mathjax_settings[
-        "mathjax_font"
-    ] = "default"  # forces mathjax to use the specified font.
+    mathjax_settings["responsive_break"] = (
+        "768"  # The break point at which it math is responsively aligned (in pixels)
+    )
+    mathjax_settings["mathjax_font"] = (
+        "default"  # forces mathjax to use the specified font.
+    )
     mathjax_settings["process_summary"] = (
         BeautifulSoup is not None
     )  # will fix up summaries if math is cut off. Requires beautiful soup
-    mathjax_settings[
-        "message_style"
-    ] = "normal"  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
+    mathjax_settings["message_style"] = (
+        "normal"  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
+    )
     mathjax_settings["font_list"] = [
         "STIX",
         "TeX",
@@ -106,9 +106,9 @@ def process_settings(pelicanobj):  # NOQA: C901
     mathjax_settings["equation_numbering"] = "none"  # AMS, auto, none
 
     # Source for MathJax
-    mathjax_settings[
-        "source"
-    ] = "'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML'"
+    mathjax_settings["source"] = (
+        "'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML'"
+    )
 
     # Get the user specified settings
     if "MATH_JAX" in pelicanobj.settings:
@@ -248,11 +248,11 @@ def process_summary(article):
             memoize_instance = article.get_summary.func.__self__
             memoize_instance.cache.clear()
 
-        article.metadata[
-            "summary"
-        ] = "{}<script type='text/javascript'>{}</script>".format(
-            summary,
-            process_summary.mathjax_script,
+        article.metadata["summary"] = (
+            "{}<script type='text/javascript'>{}</script>".format(
+                summary,
+                process_summary.mathjax_script,
+            )
         )
 
 
