@@ -1,4 +1,0 @@
-include README.md
-include LICENSE
-include pelican/plugins/render_math/mathjax_script_template
-include pelican/plugins/render_math/test_data/*
