@@ -3,6 +3,8 @@ Render Math Plugin for Pelican
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/pelican-plugins/render-math/main.yml?branch=main)](https://github.com/pelican-plugins/render-math/actions)
 [![PyPI Version](https://img.shields.io/pypi/v/pelican-render-math)](https://pypi.org/project/pelican-render-math/)
+[![Downloads](https://img.shields.io/pypi/dm/pelican-render-math)](https://pypi.org/project/pelican-render-math/)
+![License](https://img.shields.io/pypi/l/pelican-render-math?color=blue)
 
 This plugin gives [Pelican][] the ability to render mathematics inside post
 content. It accomplishes this by using the [MathJax][] JavaScript engine.
@@ -30,8 +32,7 @@ This plugin can be installed via:
 
     python -m pip install pelican-render-math
 
-For more detailed plugin installation instructions, please refer to the
-[Pelican Plugin Documentation](https://docs.getpelican.com/en/latest/plugins.html).
+As long as you have not explicitly added a `PLUGINS` setting to your Pelican settings file, then the newly-installed plugin should be automatically detected and enabled. Otherwise, you must add `render_math` to your existing `PLUGINS` list. For more information, please see the [How to Use Plugins](https://docs.getpelican.com/en/latest/plugins.html#how-to-use-plugins) documentation.
 
 Once the plugin has been installed according to those instructions, your site
 should be capable of rendering math using the MathJax JavaScript engine.
@@ -219,3 +220,8 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 [Typogrify]: https://github.com/mintchaos/typogrify
 [existing issues]: https://github.com/pelican-plugins/render-math/issues
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
+
+License
+-------
+
+This project is licensed under the AGPL-3.0 license.
