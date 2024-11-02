@@ -4,10 +4,7 @@ CHANGELOG
 1.0.4 - 2024-11-02
 ------------------
 
-Support Python 3.12+ and require Python 3.9+
-
-Contributed by [Justin Mayer](https://github.com/justinmayer) via [PR #26](https://github.com/pelican-plugins/render-math/pull/26/)
-
+Support Python 3.12+ and require Python 3.9+ ([PR #26](https://github.com/pelican-plugins/render-math/pull/26/) by [Justin Mayer](https://justinmayer.com))
 
 1.0.3 - 2020-08-30
 ------------------
