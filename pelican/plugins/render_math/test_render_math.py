@@ -40,7 +40,7 @@ class RenderMathTest(unittest.TestCase):
 
 def _build_article_generator(settings, output_path):
     context = settings.copy()
-    context["generated_content"] = dict()
+    context["generated_content"] = {}
     context["static_links"] = set()
     article_generator = ArticlesGenerator(
         context=context,
@@ -54,7 +54,7 @@ def _build_article_generator(settings, output_path):
 
 
 class PelicanMock:
-    "A dummy class exposing the only attributes needed"
+    """Dummy class exposing the only attributes needed."""
 
     def __init__(self, settings):
         self.plugins = []

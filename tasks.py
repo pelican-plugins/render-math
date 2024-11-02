@@ -109,5 +109,5 @@ def setup(c):
             curl -sSL https://raw.githubusercontent.com/pdm-project/pdm/main/install-pdm.py | python3 -
 
             Once you have taken one of the above two steps, run `invoke setup` again.
-            """  # noqa: E501
+            """  # noqa: E501, RUF100
         raise SystemExit(cleandoc(error_message))

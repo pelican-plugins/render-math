@@ -1,10 +1,7 @@
-"""
-Pelican Mathjax Markdown Extension
-==================================
-An extension for the Python Markdown module that enables
-the Pelican python blog to process mathjax. This extension
-gives Pelican the ability to use Mathjax as a "first class
-citizen" of the blog
+"""Pelican Mathjax Markdown Extension.
+
+An extension for the Python-Markdown module that enables Pelican to process MathJax.
+This extension enables Pelican to use Mathjax as a first-class citizen.
 """
 
 from xml.etree.ElementTree import Element
@@ -14,7 +11,7 @@ from markdown.util import AtomicString
 
 
 class PelicanMathJaxPattern(markdown.inlinepatterns.Pattern):
-    """Inline markdown processing that matches mathjax"""
+    """Inline markdown processing that matches MathJax."""
 
     def __init__(self, pelican_mathjax_extension, tag, pattern):
         super().__init__(pattern)
@@ -37,16 +34,16 @@ class PelicanMathJaxPattern(markdown.inlinepatterns.Pattern):
 
 
 class PelicanMathJaxCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
-    """Corrects invalid html that results from a <div> being put inside
-    a <p> for displayed math"""
+    """Correct invalid HTML when a <div> is placed inside a <p> for displayed math."""
 
     def __init__(self, pelican_mathjax_extension):
         self.pelican_mathjax_extension = pelican_mathjax_extension
 
     def correct_html(self, root, children, div_math, insert_idx, text):
-        """Separates out <div class="math"> from the parent tag <p>. Anything
-        in between is put into its own parent tag of <p>"""
+        """Separate out <div class="math"> from the parent tag <p>.
 
+        Anything in-between is put into its own parent <p> tag.
+        """
         current_idx = 0
 
         for idx in div_math:
@@ -73,9 +70,10 @@ class PelicanMathJaxCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
             root.insert(insert_idx, el)
 
     def run(self, root):
-        """Searches for <div class="math"> that are children in <p> tags and corrects
-        the invalid HTML that results"""
+        """Search for <div class="math"> that are children in <p> tags.
 
+        And correct the invalid HTML that results.
+        """
         math_tag_class = self.pelican_mathjax_extension.getConfig("math_tag_class")
 
         for parent in root:
@@ -100,7 +98,7 @@ class PelicanMathJaxCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
 
 
 class PelicanMathJaxAddJavaScript(markdown.treeprocessors.Treeprocessor):
-    """Tree Processor for adding Mathjax JavaScript to the blog"""
+    """Tree Processor for adding Mathjax JavaScript to the blog."""
 
     def __init__(self, pelican_mathjax_extension):
         self.pelican_mathjax_extension = pelican_mathjax_extension
@@ -125,7 +123,7 @@ class PelicanMathJaxAddJavaScript(markdown.treeprocessors.Treeprocessor):
 
 
 class PelicanMathJaxExtension(markdown.Extension):
-    """A markdown extension enabling mathjax processing in Markdown for Pelican"""
+    """Markdown extension enabling MathJax processing in Markdown for Pelican."""
 
     def __init__(self, config):
         try:

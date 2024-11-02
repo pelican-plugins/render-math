@@ -1,1 +1,1 @@
-from .math import *  # NOQA
+from .math import *  # noqa: F403,PGH004,RUF100
