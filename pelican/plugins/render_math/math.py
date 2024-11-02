@@ -265,11 +265,11 @@ def configure_typogrify(pelicanobj, mathjax_settings):
         return
 
     try:
-        from distutils.version import LooseVersion
+        from packaging.version import Version
 
         import typogrify
 
-        if LooseVersion(typogrify.__version__) < LooseVersion("2.0.7"):
+        if Version(typogrify.__version__) < Version("2.0.7"):
             raise TypeError("Incorrect version of Typogrify")
 
         from typogrify.filters import typogrify
