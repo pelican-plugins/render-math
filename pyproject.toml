@@ -1,6 +1,6 @@
 [project]
 name = "pelican-render-math"
-version = "1.0.3"
+version = "1.0.4"
 description = "Render mathematics in Pelican site content"
 authors = [{name = "Pelican Dev Team", email = "authors@getpelican.com"}]
 license = {text = "AGPL-3.0"}
