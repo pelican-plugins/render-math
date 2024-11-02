@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/getpelican/cookiecutter-pelican-plugin",
+  "commit": "56387847398d9c4ce2900ec16093b2bbe3f5724c",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "plugin_name": "Render Math",
+      "repo_name": "render-math",
+      "package_name": "render_math",
+      "distribution_name": "pelican-render-math",
+      "version": "1.0.3",
+      "description": "Render mathematics in Pelican site content",
+      "authors": "{name = \"Pelican Dev Team\", email = \"authors@getpelican.com\"}",
+      "keywords": "\"pelican\", \"plugin\", \"math\"",
+      "readme": "README.md",
+      "contributing": "CONTRIBUTING.md",
+      "license": "GNU Affero General Public License v3|AGPL-3.0",
+      "repo_url": "https://github.com/pelican-plugins/render-math",
+      "dev_status": "5 - Production/Stable",
+      "tests_exist": true,
+      "python_version": ">=3.8.1,<4.0",
+      "pelican_version": ">=4.5",
+      "_template": "https://github.com/getpelican/cookiecutter-pelican-plugin"
+    }
+  },
+  "directory": null
+}
