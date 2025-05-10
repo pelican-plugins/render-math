@@ -199,10 +199,10 @@ Displayed math uses the [math block](https://docutils.sourceforge.io/docs/ref/rs
 Enabling Additional Features
 ----------------------------
 
-In order for `\frac`, equation numbering, and other features to work, the MathJAX JavaScript file must be added to the HTML file, either via your theme's template configuration (if supported) or by editing the relevant template file directly. The current MathJAX CDN is hosted at `http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML`, and the code to add it to the HTML is provided below.
+In order for `\frac`, equation numbering, and other features to work, the MathJAX JavaScript file must be added to the HTML file, either via your theme's template configuration (if supported) or by editing the relevant template file directly. The current MathJAX CDN is hosted at `https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML`, and the code to add it to the HTML is provided below.
 
 ```html
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 ```
 As long as this script is loaded in either the head or body of the HTML output, the complex expressions are also converted.
 
