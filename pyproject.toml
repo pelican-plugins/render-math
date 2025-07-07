@@ -41,7 +41,7 @@ markdown = ["markdown>=3.4"]
 [tool.pdm.dev-dependencies]
 lint = [
     "invoke>=2.2",
-    "ruff>=0.7.2,<0.8.0",
+    "ruff>=0.12.0,<0.13.0",
 ]
 test = [
     "markdown>=3.4",

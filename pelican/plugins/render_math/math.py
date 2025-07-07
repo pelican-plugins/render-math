@@ -28,6 +28,7 @@ template builders that want to adjust the look and feel of
 the math. See README for more details.
 """
 
+import functools
 import os
 import sys
 
@@ -235,8 +236,6 @@ def process_summary(article):
             summary = summary_parsed.decode()
 
         # clear memoization cache
-        import functools
-
         if isinstance(article.get_summary, functools.partial):
             memoize_instance = article.get_summary.func.__self__
             memoize_instance.cache.clear()
@@ -253,13 +252,13 @@ def configure_typogrify(pelicanobj, mathjax_settings):
         return
 
     try:
-        from packaging.version import Version
-        import typogrify
+        from packaging.version import Version  # noqa: PLC0415
+        import typogrify  # noqa: PLC0415
 
         if Version(typogrify.__version__) < Version("2.0.7"):
             raise TypeError("Incorrect version of Typogrify")
 
-        from typogrify.filters import typogrify
+        from typogrify.filters import typogrify  # noqa: PLC0415
 
         # At this point, we are happy to use Typogrify, meaning
         # it is installed and it is a recent enough version
