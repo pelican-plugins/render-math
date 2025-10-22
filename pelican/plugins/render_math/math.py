@@ -252,28 +252,18 @@ def configure_typogrify(pelicanobj, mathjax_settings):
         return
 
     try:
-        from packaging.version import Version  # noqa: PLC0415
-        import typogrify  # noqa: PLC0415
+        from typogrify.filters import typogrify  # noqa: F401, PLC0415
 
-        if Version(typogrify.__version__) < Version("2.0.7"):
-            raise TypeError("Incorrect version of Typogrify")
-
-        from typogrify.filters import typogrify  # noqa: PLC0415
-
-        # At this point, we are happy to use Typogrify, meaning
-        # it is installed and it is a recent enough version
-        # that can be used to ignore all math
-        # Instantiate markdown extension and append it to the current extensions
-        pelicanobj.settings["TYPOGRIFY_IGNORE_TAGS"].extend(
-            [".math", "script"]
-        )  # ignore math class and script
+        # If above import succeeds, Typogrify is installed, so let's ensure it ignores
+        # math-related elements such as the .math class and <script> tag.
+        pelicanobj.settings["TYPOGRIFY_IGNORE_TAGS"].extend([".math", "script"])
 
     except (ImportError, TypeError) as e:
         pelicanobj.settings["TYPOGRIFY"] = False  # disable Typogrify
 
         if isinstance(e, ImportError):
             print(
-                "\nTypogrify is not installed, so it is being ignored.\nIf you want to use it, please install via: pip install typogrify\n"
+                "\nTypogrify is enabled in settings but not installed and is thus effectively disabled.\nIf you want to use it, please install via: pip install typogrify\n"
             )
 
         if isinstance(e, TypeError):
