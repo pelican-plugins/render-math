@@ -1,6 +1,14 @@
 CHANGELOG
 =========
 
+1.0.5 - 2025-10-22
+------------------
+
+Fix spurious warnings on recent Python versions by removing Typogrify version check
+
+Contributed by [Justin Mayer](https://github.com/justinmayer) via [PR #29](https://github.com/pelican-plugins/render-math/pull/29/)
+
+
 1.0.4 - 2024-11-02
 ------------------
 
