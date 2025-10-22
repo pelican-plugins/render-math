@@ -18,12 +18,8 @@ Requirements
 ------------
 
 * [Pelican][] version *4.5* or above is required.
-* [Typogrify][] version *2.0.7* or higher is needed for Typogrify to behave
-  properly with this plugin. If this version is not available, Typogrify will be
-  disabled for the entire site.
-* [BeautifulSoup][] 4+ is required to correct summaries. If BeautifulSoup is not
-  installed, summary processing will be ignored, even if specified in user
-  settings.
+* (optional) [BeautifulSoup][] 4.0 or above is required to prevent math from being truncated in post summaries. If BeautifulSoup is not installed, summary processing will be ignored, even if specified in user settings.
+* (optional) [Typogrify][] version *2.0.7* or higher is needed for Typogrify to behave properly with this plugin. If not installed, Typogrify will be disabled for the entire site.
 
 Installation
 ------------
@@ -217,7 +213,7 @@ To start contributing to this plugin, review the [Contributing to Pelican][] doc
 [BeautifulSoup]: https://www.crummy.com/software/BeautifulSoup/
 [MathJax]: https://www.mathjax.org/
 [Pelican]: https://github.com/getpelican/pelican
-[Typogrify]: https://github.com/mintchaos/typogrify
+[Typogrify]: https://github.com/justinmayer/typogrify
 [existing issues]: https://github.com/pelican-plugins/render-math/issues
 [Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
 
